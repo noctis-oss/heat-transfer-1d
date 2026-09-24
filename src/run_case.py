@@ -14,7 +14,7 @@ from finite_difference import solve_temperature
 N_NODES = 101
 LENGTH = 1.0      # m
 T_LEFT = 100.0    # deg C
-T_RIGHT = 20.0    # deg C
+T_RIGHT = 30.0    # deg C, measured at the cold end
 # -----------------------------------------------------------------
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent

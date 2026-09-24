@@ -8,7 +8,7 @@ $$\frac{d^2T}{dx^2} = 0, \quad T(0) = T_L, \quad T(L) = T_R$$
 
 ## Baseline case
 
-L = 1 m   ·   T_L = 100 °C   ·   T_R = 20 °C
+L = 1 m   ·   T_L = 100 °C   ·   T_R = 30 °C
 
 ## How to run
 
