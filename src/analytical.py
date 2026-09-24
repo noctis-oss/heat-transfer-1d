@@ -3,12 +3,17 @@
 import numpy as np
 
 
-def analytical_temperature(x, length, t_left, t_right):
-    """Return the exact temperature T(x) = T_L + (T_R - T_L) * x / L."""
+def analytical_temperature(x, length, t_left,
+                           t_right, source=0.0):
+    """Exact temperature for d2T/dx2 = -source.
+
+    T(x) = T_L + (T_R - T_L) x/L + S x (L - x)/2
+    """
     if length <= 0:
         raise ValueError("length must be positive")
     x = np.asarray(x, dtype=float)
-    return t_left + (t_right - t_left) * x / length
+    return (t_left + (t_right - t_left) * x / length
+            + 0.5 * source * x * (length - x))
 
 
 if __name__ == "__main__":
