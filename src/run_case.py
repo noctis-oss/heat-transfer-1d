@@ -11,7 +11,7 @@ from analytical import analytical_temperature
 from finite_difference import solve_temperature
 
 # ---- Case parameters: this is the only place to change them ----
-N_NODES = 11
+N_NODES = 101
 LENGTH = 1.0      # m
 T_LEFT = 100.0    # deg C
 T_RIGHT = 20.0    # deg C
