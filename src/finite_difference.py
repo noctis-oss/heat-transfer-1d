@@ -3,8 +3,10 @@
 import numpy as np
 
 
-def solve_temperature(n_nodes, length, t_left, t_right):
-    """Solve d2T/dx2 = 0 on n_nodes equally spaced nodes.
+def solve_temperature(n_nodes, length, t_left, t_right, source=0.0):
+    """Solve d2T/dx2 = -S on n_nodes equally spaced nodes.
+
+    source is S = q/k in K/m^2; the default 0.0 is the original problem.
 
     Returns the node positions x (m) and temperatures T (deg C).
     """
@@ -23,8 +25,9 @@ def solve_temperature(n_nodes, length, t_left, t_right):
         a[i, i + 1] = -1.0
         a[i + 1, i] = -1.0
 
-    # Right-hand side: the known boundary temperatures.
-    b = np.zeros(n_interior)
+    # Right-hand side: source term plus the known boundary temperatures.
+    dx = length / (n_nodes - 1)
+    b = np.full(n_interior, source * dx**2)
     b[0] += t_left
     b[-1] += t_right
 
