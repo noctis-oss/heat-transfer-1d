@@ -5,6 +5,8 @@ import numpy as np
 
 def analytical_temperature(x, length, t_left, t_right):
     """Return the exact temperature T(x) = T_L + (T_R - T_L) * x / L."""
+    if length <= 0:
+        raise ValueError("length must be positive")
     x = np.asarray(x, dtype=float)
     return t_left + (t_right - t_left) * x / length
 
