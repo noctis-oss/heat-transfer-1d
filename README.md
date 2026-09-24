@@ -4,11 +4,15 @@ Steady 1D heat conduction in a homogeneous bar, solved analytically and with fin
 
 ## Problem
 
-$$\frac{d^2T}{dx^2} = 0, \quad T(0) = T_L, \quad T(L) = T_R$$
+$$\frac{d^2T}{dx^2} = -S, \quad T(0) = T_L, \quad T(L) = T_R$$
+
+$S = \dot q/k$ is the internal heat generation divided by the thermal conductivity (K/m²); $S = 0$ is the original problem.
 
 ## Baseline case
 
-L = 1 m   ·   T_L = 100 °C   ·   T_R = 30 °C
+L = 1 m   ·   T_L = 100 °C   ·   T_R = 30 °C   ·   S = 80 K/m²   ·   101 nodes
+
+Expected midpoint temperature: 75.0 °C (65.0 °C without heat generation, as in v1.0).
 
 ## How to run
 
