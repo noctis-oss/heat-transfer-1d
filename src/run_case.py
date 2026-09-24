@@ -15,6 +15,7 @@ N_NODES = 101
 LENGTH = 1.0      # m
 T_LEFT = 100.0    # deg C
 T_RIGHT = 30.0    # deg C, measured at the cold end
+SOURCE = 80.0     # K/m^2, heat generation q/k
 # -----------------------------------------------------------------
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -23,10 +24,11 @@ FIGURE_PATH = PROJECT_ROOT / "figures" / "temperature_comparison.png"
 
 
 def main():
-    x, t_numerical = solve_temperature(N_NODES, LENGTH, T_LEFT, T_RIGHT)
-    t_exact = analytical_temperature(x, LENGTH, T_LEFT, T_RIGHT)
+    x, t_numerical = solve_temperature(N_NODES, LENGTH, T_LEFT, T_RIGHT, SOURCE)
+    t_exact = analytical_temperature(x, LENGTH, T_LEFT, T_RIGHT, SOURCE)
     max_error = np.max(np.abs(t_numerical - t_exact))
-    midpoint = analytical_temperature(LENGTH / 2, LENGTH, T_LEFT, T_RIGHT)
+    midpoint = analytical_temperature(LENGTH / 2, LENGTH, T_LEFT, T_RIGHT,
+                                      SOURCE)
 
     CSV_PATH.parent.mkdir(exist_ok=True)
     np.savetxt(CSV_PATH, np.column_stack([x, t_numerical, t_exact]),
@@ -36,7 +38,8 @@ def main():
     FIGURE_PATH.parent.mkdir(exist_ok=True)
     x_fine = np.linspace(0.0, LENGTH, 200)
     fig, ax = plt.subplots(figsize=(6, 4))
-    ax.plot(x_fine, analytical_temperature(x_fine, LENGTH, T_LEFT, T_RIGHT),
+    ax.plot(x_fine, analytical_temperature(x_fine, LENGTH, T_LEFT, T_RIGHT,
+                                       SOURCE),
             label="Analytical")
     ax.plot(x, t_numerical, "o", label=f"Finite differences ({N_NODES} nodes)")
     ax.set_xlabel("Position x (m)")
@@ -48,7 +51,7 @@ def main():
     plt.close(fig)
 
     print(f"Nodes: {N_NODES}   L = {LENGTH} m   "
-          f"T_L = {T_LEFT} C   T_R = {T_RIGHT} C")
+          f"T_L = {T_LEFT} C   T_R = {T_RIGHT} C   S = {SOURCE} K/m^2")
     print(f"Midpoint temperature: {midpoint:.1f} C")
     print(f"Maximum |numerical - analytical|: {max_error:.1e} C")
     print(f"Wrote {CSV_PATH.relative_to(PROJECT_ROOT)}")
