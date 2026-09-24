@@ -26,7 +26,7 @@ def solve_temperature(n_nodes, length, t_left, t_right):
     # Right-hand side: the known boundary temperatures.
     b = np.zeros(n_interior)
     b[0] += t_left
-    b[-1] += t_right
+    b[-1] += t_left
 
     t = np.empty(n_nodes)
     t[0] = t_left
