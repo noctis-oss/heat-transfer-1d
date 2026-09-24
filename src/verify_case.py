@@ -14,6 +14,8 @@ CASES = [
     (11, 1.0, 100.0, 20.0),   # the baseline case
     (3, 1.0, 100.0, 20.0),    # the smallest possible grid
     (21, 2.5, 100.0, 20.0),   # a longer bar
+    (11, 1.0, 50.0, 50.0),    # equal ends: flat profile
+    (11, 1.0, 20.0, 100.0),   # reversed ends: slope flips
 ]
 
 
