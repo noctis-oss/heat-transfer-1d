@@ -24,3 +24,7 @@ L = 1 m   ·   T_L = 100 °C   ·   T_R = 20 °C
 | src/     | solver, exact solution, checks     |
 | results/ | the temperature table (generated)  |
 | figures/ | the comparison figure (generated)  |
+
+## Contact
+
+Questions or corrections: open an issue on this repository.
